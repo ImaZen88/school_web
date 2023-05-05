@@ -1,0 +1,24 @@
+dáma
+
+Dáma je desková hra pro 2 hráče. Cílem je vzít všechny soupeřovy kameny nebo mu zabránit v dalším tahu. Každý hráč má 12 kamenů a pohybují se diagonálně. Mohou být přeměněny na dámu. Hráč může skákat přes soupeřovy kameny a brát je. Hra končí, když jeden hráč ztratí všechny kameny nebo je mu zabráněno v dalším tahu. Remíza nastane, pokud žádný hráč nemůže táhnout.
+
+šachy
+
+
+Šachy jsou desková hra pro 2 hráče, kteří se střídají v tahu. Cílem je dát soupeřovu králi šach a mat. Každý hráč má 16 figurek, každá s vlastními pravidly pohybu. Hra končí vítězstvím jednoho hráče, když dá mat soupeřově králi. Hra může skončit remízou.
+
+Had
+
+
+Hra Had je počítačová hra, kde hráč ovládá hada a sbírá jídlo, ale musí se vyhýbat střetům s okraji hrací plochy nebo vlastním tělem hada. Hra končí, pokud se had srazí s okrajem hrací plochy nebo se srazí se svým vlastním tělem. Hodnocení může být založeno na délce hada, počtu získaného jídla nebo na čase.
+
+Pexeso 
+
+Pexeso je desková hra pro dva a více hráčů, kde jsou karty položeny obrázkem dolů a hráči se snaží najít dvojice stejných obrázků tím, že otočí dvě karty najednou. Pokud najdou dvojici, berou si je a pokračují v dalším tahu. Hra končí, když jsou všechny dvojice nalezeny. Hráč s největším počtem dvojic vyhrává.
+
+Pac-Man
+
+Pac-Man je arkádová hra, kde hráč ovládá postavu Pac-Mana a snaží se sbírat body na herní ploše a zároveň se vyhýbat nepřátelským duchům. Pokud Pac-Man sežere speciální bod, duchové se zbarví a stávají se dočasně zranitelnými, což umožní Pac-Manovi je sežrat. Cílem hry je získat co nejvíce bodů a překonat vlastní rekord. Hra se skládá z několika kol a každé je náročnější než ta předchozí.
+
+
+
