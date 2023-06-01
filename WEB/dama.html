@@ -2,51 +2,22 @@
 <html>
   <head>
     <title>Dáma</title>
-    <style>
-      nav {
-        background-color: #000000;
-        overflow: hidden;
-        text-align: center;
-        font-weight: bold;
-        font-size: 20px;
-        width: 100%;
-      }
-
-      nav a {
-        display: inline-block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-      }
-
-      nav a:hover {
-        background-color: #ddd;
-        color: white;
-      }
-
-      nav ul {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-      }
-
-      nav li {
-        display: inline-block;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="dama.css">
   </head>
   <body>
     <h1><center>Dáma</center></h1>
-    <nav>
-      <ul>
+    <nav class="navbar background">
+      <ul class="nav-list">
+        <div class="logo">
+        </div>
         <li><a href="MAIN.html">MAIN</a></li>
-        <li><a href="sachy.html">Šachy</a></li>
-        <li><a href="had.html">Had</a></li>
-        <li><a href="pexeso.html">Pexeso</a></li>
-        <li><a href="pacman.html">Pac-Man</a></li>
-        <li><a href="../tictactoe/tictactoe_HTML.html">Tic-tac-toe</a></li>
+         <li><a href="sachy.html">Šachy</a></li>
+         <li><a href="had.html">Had</a></li>
+         <li><a href="pexeso.html">Pexeso</a></li>
+         <li><a href="pacman.html">Pac-Man</a></li>
+         <li><a href="../tictactoe/tictactoe_HTML.html">Tic-tac-toe</a></li>
       </ul>
+  
     </nav>
     <p>
       Dáma je desková hra pro 2 hráče. Cílem je vzít všechny soupeřovy kameny
@@ -56,16 +27,14 @@
       mu zabráněno v dalším tahu. Remíza nastane, pokud žádný hráč nemůže
       táhnout.
     </p>
-
-    <a href="https://www.youtube.com/watch?v=NuIvfYSNSrk" target="_new"
-      >Dáma - video</a
     >
 
-    <img
-      src="https://mujsoubor.cz/mobilni-logicke-hry/data/mujsoubor.cz/appimages/07/7602_25336.jpg"
+    <img 
+      src="https://mujsoubor.cz/mobilni-logicke-hry/data/mujsoubor.cz/appimages/07/7602_25336.jpg" id="obrazek1"
     />
     <img
-      src="https://th.bing.com/th/id/OIP.A08HIapTqnVOPN7juaL3eQHaEK?pid=ImgDet&rs=1"
-    />
+      src="https://th.bing.com/th/id/OIP.A08HIapTqnVOPN7juaL3eQHaEK?pid=ImgDet&rs=1" id="obrazek2"
+      />
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/NuIvfYSNSrk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen id="video"></iframe>
   </body>
 </html>
