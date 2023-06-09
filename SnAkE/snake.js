@@ -1,18 +1,14 @@
 
-// JavaScript Snake example
-// Author Jan Bodnar
-// http://zetcode.com/javascript/snake/
-
 var canvas;
 var ctx;
 
 var head;
-var apple;
+var jablicko;
 var ball;
 
 var dots;
-var apple_x;
-var apple_y;
+var jablicko_x;
+var jablicko_y;
 
 var leftDirection = false;
 var rightDirection = true;
@@ -43,7 +39,7 @@ function init() {
 
     loadImages();
     createSnake();
-    locateApple();
+    locatejablicko();
     setTimeout("gameCycle()", DELAY);
 }    
 
@@ -55,8 +51,8 @@ function loadImages() {
     ball = new Image();
     ball.src = 'dot.png'; 
     
-    apple = new Image();
-    apple.src = 'apple.png'; 
+    jablicko = new Image();
+    jablicko.src = 'jablicko.png'; 
 }
 
 function createSnake() {
@@ -69,12 +65,12 @@ function createSnake() {
     }
 }
 
-function checkApple() {
+function checkjablicko() {
 
-    if ((x[0] == apple_x) && (y[0] == apple_y)) {
+    if ((x[0] == jablicko_x) && (y[0] == jablicko_y)) {
 
         dots++;
-        locateApple();
+        locatejablicko();
     }
 }    
 
@@ -84,7 +80,7 @@ function doDrawing() {
     
     if (inGame) {
 
-        ctx.drawImage(apple, apple_x, apple_y);
+        ctx.drawImage(jablicko, jablicko_x, jablicko_y);
 
         for (var z = 0; z < dots; z++) {
             
@@ -110,12 +106,12 @@ function gameOver() {
     ctx.fillText('Game over', C_WIDTH/2, C_HEIGHT/2);
 }
 
-function checkApple() {
+function checkjablicko() {
 
-    if ((x[0] == apple_x) && (y[0] == apple_y)) {
+    if ((x[0] == jablicko_x) && (y[0] == jablicko_y)) {
 
         dots++;
-        locateApple();
+        locatejablicko();
     }
 }
 
@@ -172,10 +168,10 @@ function checkCollision() {
 function locateApple() {
 
     var r = Math.floor(Math.random() * MAX_RAND);
-    apple_x = r * DOT_SIZE;
+    jablicko_x = r * DOT_SIZE;
 
     r = Math.floor(Math.random() * MAX_RAND);
-    apple_y = r * DOT_SIZE;
+    jablicko_y = r * DOT_SIZE;
 }    
 
 function gameCycle() {
