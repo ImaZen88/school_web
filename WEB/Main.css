@@ -35,7 +35,11 @@
   }
 
   .nav-list li a:hover {
-    color: rgb(88, 88, 88);
+     background-color: white;
+      color: black;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
   }
 
   .rightnav {
