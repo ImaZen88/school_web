@@ -1,245 +1,197 @@
-i add some features like pausing the game and using localStorage to save the score
-and also slowing little bit the snake .
-
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Snake Game</title>
-  <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-  <style>
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
-  body {
-    background: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  canvas {
-    border: 1px solid white; background-color:gold;
-  }
-  #p1
-  {
-    color:red;
-	position:absolute;
-	left:100px;
-	top:10px;
-  }
-    #p2
-  {
-    color:red;
-	position:absolute;
-	left:100px;
-	top:30px;
-  }
-  #score
-  {
-    color:yellow;
-    position:absolute;
-	left:155px;
-	top:10px;
-  }
-  #high
-  {
-    color:yellow;
-    position:absolute;
-	  left:195px;
-	  top:30px;
-  }
-  #btn_stop
-  {
-    color:brown;
-    position:absolute;
-	  left:100px;
-	  top:80px;
-  }
-  #end_msg
-  {
-    color:brown;
-    position:absolute;
-	  left:100px;
-	  top:100px;
-  }
-  </style>
-</head>
-<body>
-<p id="p1">SCORE:</p>
-<p id="p2">HIGHSCORE:</p>
-<p id="score"></p>
-<p id="high"></p>
-<button id="btn_stop" >Stop Snake Game</button>
-<p id="end_msg"></p>
-<canvas width="400" height="400" id="game"></canvas>
-<script>
-var canvas = document.getElementById('game');
-var context = canvas.getContext('2d');
-var grid = 16;
-var count = 0;
-var score=0;
-//reading  last score value 
-if(localStorage.score){
-  document.getElementById('score').innerHTML=localStorage.score; 
-}
+  <head>
+  	<title>Snake Game</title>
+  </head>
 
-var max=0;  
+  <body>
 
-var snake = {
-  x: 160,
-  y: 160,
-  
-  // snake velocity. moves one grid length every frame in either the x or y direction
-  dx: grid,
-  dy: 0,
-  
-  // keep track of all grids the snake body occupies
-  cells: [],
-  
-  // length of the snake. grows when eating an apple
-  maxCells: 4
-};
-var apple = {
-  x: 320,
-  y: 320
-};
+    <div id="score">0</div>
+    <canvas id="snakeboard" width="400" height="400"></canvas>
 
-// get random whole numbers in a specific range
-// @see https://stackoverflow.com/a/1527820/2124254
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+    <style>
+      #snakeboard {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #score {
+        text-align: center;
+        font-size: 140px;
+      }
+    </style>
+  </body>
 
-// game loop
-function loop() {
-  
-  requestAnimationFrame(loop);
-  // slow game loop to 15 fps instead of 60 (60/15 = 4)
-  if (++count < 10) {
-    return;
-  }
-  count = 0;
-  context.clearRect(0,0,canvas.width,canvas.height);
-  // move snake by it's velocity
-  snake.x += snake.dx;
-  snake.y += snake.dy;
-  // wrap snake position horizontally on edge of screen
-  if (snake.x < 0) {
-    snake.x = canvas.width - grid;
-  }
-  else if (snake.x >= canvas.width) {
-    snake.x = 0;
-  }
-  
-  // wrap snake position vertically on edge of screen
-  if (snake.y < 0) {
-    snake.y = canvas.height - grid;
-  }
-  else if (snake.y >= canvas.height) {
-    snake.y = 0;
-  }
-  // keep track of where snake has been. front of the array is always the head
-  snake.cells.unshift({x: snake.x, y: snake.y});
-  // remove cells as we move away from them
-  if (snake.cells.length > snake.maxCells) {
-    snake.cells.pop();
-  }
-  // draw apple
-  context.fillStyle = 'red';
-  context.fillRect(apple.x, apple.y, grid-1, grid-1);
-  // draw snake one cell at a time
-  context.fillStyle = 'green';
-  snake.cells.forEach(function(cell, index) {
+  <script>
+    const board_border = 'black';
+    const board_background = "white";
+    const snake_col = 'lightblue';
+    const snake_border = 'darkblue';
     
-    // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
-    context.fillRect(cell.x, cell.y, grid-1, grid-1);  
-    // snake ate apple
-    if (cell.x === apple.x && cell.y === apple.y) {
-      snake.maxCells++;
-	  score+=1;
-    //saving score for next playing.
-    localStorage.setItem('score',score);
-	  //max=score;
-	  document.getElementById('score').innerHTML=score;
-	
-      // canvas is 400x400 which is 25x25 grids 
-      apple.x = getRandomInt(0, 25) * grid;
-      apple.y = getRandomInt(0, 25) * grid;
+    let snake = [
+      {x: 200, y: 200},
+      {x: 190, y: 200},
+      {x: 180, y: 200},
+      {x: 170, y: 200},
+      {x: 160, y: 200}
+    ]
+
+    let score = 0;
+    // True if changing direction
+    let changing_direction = false;
+    // Horizontal velocity
+    let food_x;
+    let food_y;
+    let dx = 10;
+    // Vertical velocity
+    let dy = 0;
+    
+    
+    // Get the canvas element
+    const snakeboard = document.getElementById("snakeboard");
+    // Return a two dimensional drawing context
+    const snakeboard_ctx = snakeboard.getContext("2d");
+    // Start game
+    main();
+
+    gen_food();
+
+    document.addEventListener("keydown", change_direction);
+    
+    // main function called repeatedly to keep the game running
+    function main() {
+
+        if (has_game_ended()) return;
+
+        changing_direction = false;
+        setTimeout(function onTick() {
+        clear_board();
+        drawFood();
+        move_snake();
+        drawSnake();
+        // Repeat
+        main();
+      }, 100)
     }
-    // check collision with all cells after this one (modified bubble sort)
-    for (var i = index + 1; i < snake.cells.length; i++)
-	{
+    
+    // draw a border around the canvas
+    function clear_board() {
+      //  Select the colour to fill the drawing
+      snakeboard_ctx.fillStyle = board_background;
+      //  Select the colour for the border of the canvas
+      snakeboard_ctx.strokestyle = board_border;
+      // Draw a "filled" rectangle to cover the entire canvas
+      snakeboard_ctx.fillRect(0, 0, snakeboard.width, snakeboard.height);
+      // Draw a "border" around the entire canvas
+      snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
+    }
+    
+    // Draw the snake on the canvas
+    function drawSnake() {
+      // Draw each part
+      snake.forEach(drawSnakePart)
+    }
+
+    function drawFood() {
+      snakeboard_ctx.fillStyle = 'lightgreen';
+      snakeboard_ctx.strokestyle = 'darkgreen';
+      snakeboard_ctx.fillRect(food_x, food_y, 10, 10);
+      snakeboard_ctx.strokeRect(food_x, food_y, 10, 10);
+    }
+    
+    // Draw one snake part
+    function drawSnakePart(snakePart) {
+
+      // Set the colour of the snake part
+      snakeboard_ctx.fillStyle = snake_col;
+      // Set the border colour of the snake part
+      snakeboard_ctx.strokestyle = snake_border;
+      // Draw a "filled" rectangle to represent the snake part at the coordinates
+      // the part is located
+      snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
+      // Draw a border around the snake part
+      snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+    }
+
+    function has_game_ended() {
+      for (let i = 4; i < snake.length; i++) {
+        if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
+      }
+      const hitLeftWall = snake[0].x < 0;
+      const hitRightWall = snake[0].x > snakeboard.width - 10;
+      const hitToptWall = snake[0].y < 0;
+      const hitBottomWall = snake[0].y > snakeboard.height - 10;
+      return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+    }
+
+    function random_food(min, max) {
+      return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+    }
+
+    function gen_food() {
+      // Generate a random number the food x-coordinate
+      food_x = random_food(0, snakeboard.width - 10);
+      // Generate a random number for the food y-coordinate
+      food_y = random_food(0, snakeboard.height - 10);
+      // if the new food location is where the snake currently is, generate a new food location
+      snake.forEach(function has_snake_eaten_food(part) {
+        const has_eaten = part.x == food_x && part.y == food_y;
+        if (has_eaten) gen_food();
+      });
+    }
+
+    function change_direction(event) {
+      const LEFT_KEY = 37;
+      const RIGHT_KEY = 39;
+      const UP_KEY = 38;
+      const DOWN_KEY = 40;
       
-      // snake occupies same space as a body part. reset game
-      if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) 
-	 { 
-	 
-	    if(score>max)
-	    {
-	     max=score;
-	    }
-    	snake.x = 160;
-        snake.y = 160;
-        snake.cells = [];
-        snake.maxCells = 4;
-        snake.dx = grid;
-        snake.dy = 0;
-		//score=0;
-        apple.x = getRandomInt(0, 25) * grid;
-        apple.y = getRandomInt(0, 25) * grid;
-	    document.getElementById('high').innerHTML=max;
+    // Prevent the snake from reversing
+    
+      if (changing_direction) return;
+      changing_direction = true;
+      const keyPressed = event.keyCode;
+      const goingUp = dy === -10;
+      const goingDown = dy === 10;
+      const goingRight = dx === 10;
+      const goingLeft = dx === -10;
+      if (keyPressed === LEFT_KEY && !goingRight) {
+        dx = -10;
+        dy = 0;
+      }
+      if (keyPressed === UP_KEY && !goingDown) {
+        dx = 0;
+        dy = -10;
+      }
+      if (keyPressed === RIGHT_KEY && !goingLeft) {
+        dx = 10;
+        dy = 0;
+      }
+      if (keyPressed === DOWN_KEY && !goingUp) {
+        dx = 0;
+        dy = 10;
       }
     }
-  }  
-  );  
-}
-// listen to keyboard events to move the snake
-document.addEventListener('keydown', function(e) {
-  // prevent snake from backtracking on itself by checking that it's 
-  // not already moving on the same axis (pressing left while moving
-  // left won't do anything, and pressing right while moving left
-  // shouldn't let you collide with your own body)
-  
-  // left arrow key
-  if (e.which === 37 && snake.dx === 0) {
-    snake.dx = -grid;
-    snake.dy = 0;
-  }
-  // up arrow key
-  else if (e.which === 38 && snake.dy === 0) {
-    snake.dy = -grid;
-    snake.dx = 0;
-  }
-  // right arrow key
-  else if (e.which === 39 && snake.dx === 0) {
-    snake.dx = grid;
-    snake.dy = 0;
-  }
-  // down arrow key
-  else if (e.which === 40 && snake.dy === 0) {
-    snake.dy = grid;
-    snake.dx = 0;
-  }
-});
-// start the game
-requestAnimationFrame(loop);
 
-
-
-
-function myFunction() {
-  document.getElementById('end_msg').innerHTML="";
-  alert('Press confirm to continue');
-}
-
-//stop playing
-$(document).ready(function(){
-		$('#btn_stop').click(function(){
-      document.getElementById('end_msg').innerHTML="Game stoped by player" ;
-      setTimeout(myFunction, 1000);	
-		});
-	});
-
-</script>
-</body>
+    function move_snake() {
+      // Create the new Snake's head
+      const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+      // Add the new head to the beginning of snake body
+      snake.unshift(head);
+      const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
+      if (has_eaten_food) {
+        // Increase score
+        score += 10;
+        // Display score on screen
+        document.getElementById('score').innerHTML = score;
+        // Generate new food location
+        gen_food();
+      } else {
+        // Remove the last part of snake body
+        snake.pop();
+      }
+    }
+    
+  </script>
 </html>
