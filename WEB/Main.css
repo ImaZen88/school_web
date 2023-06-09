@@ -98,10 +98,12 @@
     font-family: 'Piazzolla', serif;
     font-weight: bold;
     font-size: 35px;
+    color: #d9d4d4;  
   }
 
   .text-small {
     font-size: 19px;
+    color: #d9d4d4;  
   }
 
   .btn {
