@@ -42,13 +42,14 @@
       text-decoration: none;
   }
 
+
   .rightnav {
     width: 30%;
     text-align: right;
   }
 
   .p1 {
-      font-family: "Helvetica", sans-serif;
+      font: 15px Lucida, monospace;
     }
 
   .firstsection {
