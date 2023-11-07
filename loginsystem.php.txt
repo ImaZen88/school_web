@@ -1,0 +1,7 @@
+<?php
+$password = "nějaký input";
+$array_users = array("admin"=>"1234", "admin2"=>"2345")
+if($password == array_users[$username]) {
+echo "Přihlášen";
+};
+?>
