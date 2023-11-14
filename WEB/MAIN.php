@@ -21,6 +21,13 @@
 
     <?php
     $userIsLoggedIn = false;
+    $password = "nějaký input";
+    $array_users = array("admin"=>"1234", "admin2"=>"2345")
+    if($password == array_users[$username]) {
+      $userIsLoggedIn = true;
+    }; 
+  
+    
 
     if ($userIsLoggedIn) {
         echo '<div>přihlášen</div>';
