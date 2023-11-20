@@ -22,20 +22,25 @@
 <body>
 
 <?php
-// Sample data for the table
-$students = array(
-    array("John", "Doe", 25),
-    array("Jane", "Smith", 22),
-    array("Bob", "Johnson", 28)
+$Players = array(
+    array("", "", 1),
+    array("", "", 2),
+    array("", "", 3),
+    array("", "", 4)
+    array("", "", 5),
+    array("", "", 6),
+    array("", "", 7)
+    array("", "", 8),
+    array("", "", 9),
+    array("", "", 10),
 );
 
-// Outputting the table
 echo "<table>";
-echo "<tr><th>First Name</th><th>Last Name</th><th>Age</th></tr>";
+echo "<tr><th>Nickname</th><th>Score</th><th>Place</th></tr>";
 
-foreach ($students as $student) {
+foreach ($Players as $Players) {
     echo "<tr>";
-    foreach ($student as $value) {
+    foreach ($Players as $value) {
         echo "<td>$value</td>";
     }
     echo "</tr>";
