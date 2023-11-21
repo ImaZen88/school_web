@@ -114,7 +114,7 @@
 
   <footer class="background">
     <p class="text-footer">
-      &copy;2023 Všechna práva vyhrazena a Jirka neumí hrát csko.
+      &copy;2023 Jirka poslouchá imagine dragons.
     </p>
 
 
