@@ -3,6 +3,19 @@
   <head>
     <title>HRY</title>
     <link rel="stylesheet" type="text/css" href="Main.css">
+    <style>
+body {
+  padding: 25px;
+  background-color: white;
+  color: black;
+  font-size: 25px;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+</style>
 </head>
 
 <body>
@@ -16,6 +29,7 @@
        <li><p class="p1"><a href="Pexeso.html">Pexeso</a></li>
        <li><p class="p1"><a href="Pacman.html">Pac-Man</a></li>
        <li><p class="p1"><a href="../tictactoe/tictactoe_HTML.html">Tic-tac-toe</a></li>
+      <li><button onclick="myFunction()">Toggle dark mode</button></li>
     </ul>
     </nav>
 
@@ -106,11 +120,7 @@
       
             </div>
       
-        </section></div>';
-    }
-
-  
-        ?>
+        </section></div>'
 
   <footer class="background">
     <p class="text-footer">
@@ -120,6 +130,12 @@
 
   </footer>
 </body>
+<script>
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
 
 </html>
 
