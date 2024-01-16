@@ -13,7 +13,7 @@
       <li><p class="p1"><a href="dama.html">Dáma</a></li>
        <li><p class="p1"><a href="sachy.html">Šachy</a></li>
        <li><p class="p1"><a href="had.html">Had</a></li>
-       <li><p class="p1"><a href="pexeso.html">Pexeso</a></li>
+       <li><p class="p1"><a href="Pexeso.html">Pexeso</a></li>
        <li><p class="p1"><a href="Pacman.html">Pac-Man</a></li>
        <li><p class="p1"><a href="../tictactoe/tictactoe_HTML.html">Tic-tac-toe</a></li>
     </ul>
