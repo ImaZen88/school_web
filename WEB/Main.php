@@ -23,7 +23,7 @@ body {
     <ul class="nav-list">
       <div class="logo">
       </div>
-      <li><p class="p1"><a href="dama.html">Dáma</a></li>
+      <li><p class="p1"><a href="Dama.html">Dáma</a></li>
        <li><p class="p1"><a href="sachy.html">Šachy</a></li>
        <li><p class="p1"><a href="had.html">Had</a></li>
        <li><p class="p1"><a href="Pexeso.html">Pexeso</a></li>
