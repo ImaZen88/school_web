@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    position: sticky;
+    top: 0;
+    cursor: pointer;
+  }
+
+  .background {
+    background: white;
+    background-blend-mode: darken;
+    background-size: cover;
+  }
+
+  .nav-list {
+    width: 70%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-list li {
+    list-style: none;
+    padding: 26px 30px;
+  }
+
+  .nav-list li a {
+    text-decoration: none;
+    color: black;
+    min-width: 100px;
+  }
+
+    .nav-list li:hover {
+    list-style: none;
+    background-color: #e8a30e;
+    padding: 26px 30px;
+  }
+
+
+  .rightnav {
+    width: 30%;
+    text-align: right;
+  }
+
+  .p1 {
+      font: 15px Lucida, monospace;
+    }
+
+  .firstsection {
+  
+    height: 400px;
+  }
+
+  .secondsection {
+    height: 400px;
+  }
+
+  .thirdsection {
+    height: 400px;
+  }
+
+  .fourthsection {
+    height: 400px;
+  }
+
+  .fifthsection {
+    height: 400px;
+  }
+
+  .box-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    max-width: 80%;
+    margin: auto;
+    height: 80%;
+  }
+
+  .firsthalf {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .secondhalf {
+    width: 30%;
+  }
+
+
+  .text-big {
+    font-family: 'Piazzolla', serif;
+    font-weight: bold;
+    font-size: 35px;
+    color: #262525;  
+  }
+
+  .text-small {
+    font-size: 19px;
+    color: #262525;  
+  }
+
+  .btn {
+    padding: 8px 20px;
+    margin: 7px 0;
+    border: 2px solid white;
+    border-radius: 8px;
+    background: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .section {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .text-footer {
+    text-align: center;
+    padding: 20px 0;
+    font-family: 'Ubuntu', sans-serif;
+    display: flex;
+    justify-content: center;
+    color: black;
+  }
+
