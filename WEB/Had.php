@@ -4,6 +4,7 @@
     <title>Had</title>
     <link rel="stylesheet" type="text/css" href="Had.css">
   </head>
+   <?php include 'Navbar.php';?>
   <body>
     <h1><center>Had</center></h1>
     <nav class="navbar background">
