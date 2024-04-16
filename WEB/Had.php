@@ -7,19 +7,7 @@
    <?php include 'Navbar.php';?>
   <body>
     <h1><center>Had</center></h1>
-    <nav class="navbar background">
-      <ul class="nav-list">
-        <div class="logo">
-        </div>
-        <li><a href="Dama.html">Dáma</a></li>
-         <li><a href="Sachy.html">Šachy</a></li>
-         <li><a href="Main.php">MAIN</a></li>
-         <li><a href="Pexeso.html">Pexeso</a></li>
-         <li><a href="Pacman.html">Pac-Man</a></li>
-         <li><a href="../tictactoe/tictactoe_HTML.html">Tic-tac-toe</a></li>
-      </ul>
-  
-    </nav>
+
     <p>
       Hra Had je počítačová hra, kde hráč ovládá hada a sbírá jídlo, ale musí se
       vyhýbat střetům s okraji hrací plochy nebo vlastním tělem hada. Hra končí,
