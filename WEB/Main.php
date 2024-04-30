@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Had</title>
+    <link rel="stylesheet" type="text/css" href="Main.css">
+  </head>
   <?php
   include './Navbar.php';
 
