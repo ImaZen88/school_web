@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Had</title>
+    <title>Main</title>
     <link rel="stylesheet" type="text/css" href="Main.css">
   </head>
   <?php
